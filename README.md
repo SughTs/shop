@@ -1,5 +1,8 @@
 # 不论你要干嘛都先看看README！！！  
 请把代码推送到dev分支，master分支会在确认无误后合并！！！  
+-------------------------------------------------  
+
+[Stable Release地址]:https://github.com/SughTs/2023software  
 
 Origin shop data  
 master分支目前并未加入微信小程序的架构，需要请去dev分支下载。  

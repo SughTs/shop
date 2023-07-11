@@ -1,0 +1,14 @@
+<!--轮播器
+  wx:for遍历输出一个数组
+  wx:key="item" 数组元素，必须写item
+          不能写"bean"
+          interval切换间隔
+          duration指动画持续时长
+-->
+<swiper indicator-dots="true"
+  interval="4000" duration='1000'
+  autoplay="true">
+  <swiper-item wx:for="{{hots}}" wx:key="item">
+    <image mode="aspectFill" src="{{api}}{{item.logo}}"></image>
+  </swiper-item>
+</swiper>

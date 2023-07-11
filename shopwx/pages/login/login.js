@@ -6,7 +6,11 @@ Page({//系统函数
       password:'',
   },
   onLoad(options){//页面主函数
-
+    if(wx.getStorageSync('uid')){//打开时去取得uid，直接进入index
+      wx.switchTab({
+        url: '../index/index',
+      })
+    }
   },
   onInput(e){//e指代当前事件
     //console.log(e.detail.value)//获取正在输入的内容
@@ -18,8 +22,17 @@ Page({//系统函数
     console.log(this.data.username)
     console.log(this.data.password)
     //util.alert(XXXX)也可以
-    util.http('http://localhost:8080/login.vx', this.data,resp=>{
-      
+    util.http('http://localhost:8080/login/vx', 
+    this.data,resp=>{
+      if(resp.code == 1){
+        wx.setStorageSync('uid', resp.uid)//把此人uid存入小程序软件内部存储
+        wx.switchTab({//打开网页
+          url: '../index/index',
+        })
+      }
+      else{
+        util.alert(resp.msg)
+      }
     })//简单写法，将小程序数据提交给java
   },
   holloer(e){//测试函数

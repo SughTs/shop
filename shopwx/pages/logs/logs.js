@@ -44,5 +44,11 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  logout(){//类似于重定向
+    wx.removeStorageSync('uid')
+    wx.redirectTo({
+      url: '../login/login',
+    })
   }
 })

@@ -2,6 +2,7 @@ package com.example.shop.controller;
 
 import com.example.shop.bean.ProductBean;
 import com.example.shop.bean.UserBean;
+import com.example.shop.bean.VxResp;
 import com.example.shop.mapper.CategoryMapper;
 import com.example.shop.mapper.ProductMapper;
 import com.example.shop.util.NotNullUtil;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +24,13 @@ public class ProductController extends BaseController{
     ProductMapper productMapper;
     @Autowired
     CategoryMapper categoryMapper;
+    @ResponseBody
+    @RequestMapping("/index/vx")
+    public VxResp index(){
+        VxResp vx = new VxResp();
+        vx.hots = productMapper.selectHot();
+        return vx;
+    }
     //@Autowired
     //java数组不能在后期添加数据（数组痛点）
     //于是就有了ArrayList

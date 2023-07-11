@@ -14,4 +14,7 @@ public interface ProductMapper extends BaseMapper<ProductBean> {
 
     @Select("select * from v2_p order by id desc")//按照id倒序排序
     List<ProductBean> selectView();
+
+    @Select("select * from v2_p where hot='热卖'")
+    List<ProductBean> selectHot();
 }

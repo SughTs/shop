@@ -2,6 +2,8 @@
 请把代码推送到dev分支，master分支会在确认无误后合并！！！  
 -------------------------------------------------  
 
+平心静气  
+
 [Stable Release地址]:https://github.com/SughTs/2023software  
 
 Origin shop data  

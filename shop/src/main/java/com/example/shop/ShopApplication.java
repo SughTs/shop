@@ -42,5 +42,5 @@ public class ShopApplication implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/shop/**").addResourceLocations("file:N:/lizbit/shop/");
     }
-
+    //这是lg提交的内容
 }

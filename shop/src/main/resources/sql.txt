@@ -1,0 +1,4 @@
+create view xx as
+select v_product.*tbl_category.category from v_product
+left join tbl_category
+on v_product.cid = tbl_category.id

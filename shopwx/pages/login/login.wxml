@@ -1,0 +1,16 @@
+<view class="wrapper">
+  <input class="input" 
+  bindinput="onInput"
+  data-name="username"
+  placeholder="请输入账号" />
+  <input class="input" 
+  bindinput="onInput"
+  data-name="password"
+  placeholder="请输入密码" />
+</view>
+<!--
+  bindinput绑定正在输入事件，调用onInput函数
+  onInput函数自行编写
+  -->
+<button class="btn" bindtap="submit" >登录/注册</button>
+<!--绑定点击和submit函数-->

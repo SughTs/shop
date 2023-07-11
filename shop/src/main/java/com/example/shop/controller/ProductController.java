@@ -25,20 +25,26 @@ public class ProductController extends BaseController{
     //@Autowired
     //java数组不能在后期添加数据（数组痛点）
     //于是就有了ArrayList
+    @RequestMapping("/all")
+    public String all(HttpServletRequest req){//查询视图中的数据
+        req.setAttribute("retList", productMapper.selectView());
+        return "/product/all";
+    }
     @RequestMapping("/list")
-    public String list(HttpServletRequest req) {
+    public String list(int uid, HttpServletRequest req) {
         //ProductBean product = new
         //System.out.println("Here came I, list.");
         //System.out.println(productMapper.selectList(null));
-        req.setAttribute("retList",productMapper.selectList(null));
+        req.setAttribute("retList",productMapper.selectList(uid));//传入Mapper
         return "/product/list";
     }
     @RequestMapping("/del")
     public String del(int id){
         //deleteById函数依据主键删除，不用写sql语句
+        int uid = productMapper.selectById(id).uid;
         productMapper.deleteById(id);
         System.out.println("delete!");
-        return "redirect:/product/list";
+        return "redirect:/product/list?uid=" + uid;
     }
     //@RequestMapping("/deleter")//任何方式都能进来
     //public String deleter(int id){
@@ -65,7 +71,7 @@ public class ProductController extends BaseController{
             productMapper.updateById(bean);//修改操作
         }
         System.out.println("接收到POST！");
-        return "redirect:/product/list";
+        return "redirect:/product/list?uid="+bean.uid;//
     }
     //注意get与post的问题，请求方式的问题（还有delete、put）
     //get一般是<a></a>，重定向或者浏览器直接写网址访问

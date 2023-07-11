@@ -19,10 +19,26 @@ public class UserController {
     //登录
     @Autowired//注入，可以理解成new
     UserMapper userMapper;
+
+
+    @RequestMapping("/login/vx")
+    public void login(UserBean bean){
+        System.out.println(bean.username);
+        System.out.println(bean.password);
+        bean.status="买家";
+        UserBean user = userMapper.getUser(bean);
+        if(user == null){
+            System.out.println("login fail！");
+        }
+        else{
+            System.out.println("success login!");
+        }//以上部分完成了小程序传入数据至java
+    }
     @RequestMapping("/login")
     public String login(UserBean bean, HttpServletRequest req) throws Exception {//注意抛出异常，扔给了tomcat，项目外壳是tomcat
         //System.out.println(username);
         //System.out.println(password);//测试
+        bean.status = "卖家" ;
         UserBean user = userMapper.getUser(bean);
         //if (user==null)
         //    return"/main";

@@ -4,7 +4,7 @@
 
 平心静气  
 
-[Stable Release地址]:https://github.com/SughTs/2023software  
+Stable Release地址:https://github.com/SughTs/2023software  
 
 Origin shop data  
 master分支目前并未加入微信小程序的架构，需要请去dev分支下载。  

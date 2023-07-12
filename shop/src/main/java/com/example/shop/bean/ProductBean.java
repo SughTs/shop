@@ -32,5 +32,7 @@ public class ProductBean {
     public String user;
     @TableField(exist = false)
     public String category;
+    @TableField(exist = false)
+    public String ftime;//默认空值
 }
 //产品表

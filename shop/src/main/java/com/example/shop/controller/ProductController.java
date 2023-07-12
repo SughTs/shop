@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Controller
@@ -26,9 +28,34 @@ public class ProductController extends BaseController{
     CategoryMapper categoryMapper;
     @ResponseBody
     @RequestMapping("/index/vx")
-    public VxResp index(){
+    public VxResp index(Integer cid){
         VxResp vx = new VxResp();
+        vx.categorys = categoryMapper.selectList(null);//获取所有类别
         vx.hots = productMapper.selectHot();
+        if(cid == null && !vx.categorys.isEmpty()){
+            cid = vx.categorys.get(0).id;
+        }
+        if(cid == null){
+            //cid与类别数组都空，数据库没数据
+            vx.products = new ArrayList<>();//空商品数组
+        }
+        else{//按照类别id查询该类别商品列表
+            vx.products = productMapper.selectProduct(cid);
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");//时间格式化工具
+        for(ProductBean bean:vx.products){
+            bean.ftime = sdf.format(bean.ctime);//Date ctime->String ftime
+        }//格式转换
+        return vx;
+    }
+    // /product/detail/vx?pid=x
+    @ResponseBody // 小程序地址必须加入此注解
+    @RequestMapping("/detail")
+    public VxResp detail(int pid){
+        VxResp vx = new VxResp();
+        vx.product = productMapper.selectById(pid);//单个商品信息
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        vx.product.ftime = sdf.format(vx.product.ctime);
         return vx;
     }
     //@Autowired
@@ -52,7 +79,7 @@ public class ProductController extends BaseController{
         //deleteById函数依据主键删除，不用写sql语句
         int uid = productMapper.selectById(id).uid;
         productMapper.deleteById(id);
-        System.out.println("delete!");
+        System.out.println("product delete!");
         return "redirect:/product/list?uid=" + uid;
     }
     //@RequestMapping("/deleter")//任何方式都能进来

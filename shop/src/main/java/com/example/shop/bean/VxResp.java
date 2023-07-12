@@ -12,4 +12,7 @@ public class VxResp {//给小程序返回的数据都在这里定义
     }
     public String uid = "" ;//给小程序的uid
     public List<ProductBean> hots;//数组
+    public List<CategoryBean> categorys;
+    public List<ProductBean> products;
+    public ProductBean product;
 }

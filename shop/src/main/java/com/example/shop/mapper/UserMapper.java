@@ -1,11 +1,13 @@
 package com.example.shop.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;//这玩意
+import com.example.shop.bean.ProductBean;
 import com.example.shop.bean.UserBean;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 
 @Repository
 public interface UserMapper extends BaseMapper<UserBean> {
@@ -18,4 +20,7 @@ public interface UserMapper extends BaseMapper<UserBean> {
     //UserBean getBuyer(UserBean bean);
     @Select("select * from tbl_user where username=${username}")
     UserBean haveUser(@Param("username")String username);
+
+    @Select("select * from tbl_user where id = #{id}")
+    List<ProductBean> selectUser(@Param("id")int id);
 }

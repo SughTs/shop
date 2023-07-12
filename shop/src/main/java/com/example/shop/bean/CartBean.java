@@ -14,5 +14,16 @@ public class CartBean {
     public Integer count;
     public Integer pid;
     public Integer uid;
+    public CartBean()
+    {
+
+    }
+    public CartBean(Integer id,Integer count,Integer pid,Integer uid)
+    {
+        this.id=id;
+        this.count=count;
+        this.pid=pid;
+        this.uid=uid;
+    }
 }
-//购物车
+//购物车记录

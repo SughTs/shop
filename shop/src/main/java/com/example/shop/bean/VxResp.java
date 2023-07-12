@@ -15,4 +15,9 @@ public class VxResp {//给小程序返回的数据都在这里定义
     public List<CategoryBean> categorys;
     public List<ProductBean> products;
     public ProductBean product;
+    public List<ProductBean> users;
+    public List<CartBean> cart;
+    public List<UserCartBean> userCart;
+    //public List
+    //public List<>预留的购物车模块
 }

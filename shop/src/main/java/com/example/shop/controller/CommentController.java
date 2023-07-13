@@ -15,7 +15,8 @@ public class CommentController extends BaseController{
     CommentMapper commentMapper;
 
     @RequestMapping("/all")
-    public String all(HttpServletRequest req){//查询视图中的数据
+    public String all(int uid,HttpServletRequest req){//查询视图中的数据
+        req.setAttribute("uid",uid);
         req.setAttribute("retList", commentMapper.selectView());
         return "/comment/all";
     }

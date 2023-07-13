@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>首页</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="../../../js/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="../../../js/bootstrap.min.js"></script>
+</head>
+<!--<script>
+    window.onload = function(){
+        var user = localStorage.getItem('shop_user');
+        document.getElementById('user').value= user;
+    }
+</script>-->
+<body>
+<ul class="breadcrumb" style="margin:0;">
+    <li><a href="#">求购管理</a></li>
+    <li>查询求购</li>
+</ul>
+<form class="form-inline">
+    <div class="row alert alert-info" style="margin:0;padding:3px;">
+        <a class="btn btn-success" href="/info/all?uid=${uid}">刷新</a>
+
+    </div>
+
+    <table class="table table-condensed table-striped">
+        <tr>
+            <th>编号</th>
+            <th>Main key</th>
+            <th>求购信息</th>
+            <th>求购描述</th>
+            <th>求购发出时间</th>
+            <th>求购者</th>
+        </tr>
+        <#list retList as bean>
+        <tr>
+            <td>${bean_index+1}</td><!--序号，指数组下表-->
+            <td>${bean.id}</td>
+            <td>${(bean.info)!}</td>
+            <td>${(bean.description)!}</td>
+            <td>${(bean.ctime?string('yyyy-MM-dd HH:mm'))}</td><!--时间，java Data类型，认不出来的，需要转换为String。在这里?是调用-->
+            <td>${(bean.username)!}</td><!--外键-->
+            <th>
+                <#if uid == 1>
+                <a class="btn btn-danger btn-xs"  href="/info/del?id=${bean.id}">删除</a>
+                </#if>
+            </th>
+        </tr>
+        </#list>
+    </table>
+
+</form>
+</body>
+</html>

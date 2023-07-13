@@ -33,7 +33,7 @@
     <div class="navbar-container" id="navbar-container">
         <div class="navbar-header pull-left">
             <a href="#" class="navbar-brand"> <small> <i
-                    class="icon-leaf"></i> llg全球购物平台后台管理系统  <sub>为您提供最优质的服务</sub>
+                    class="icon-leaf"></i> lllg购物平台后台管理系统  <sub>为您提供最优质的服务</sub>
                 </small>				</a>
             <!-- /.brand -->
         </div>
@@ -84,7 +84,7 @@
                 }
             </script>
 
-            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+            <!--<div class="sidebar-shortcuts" id="sidebar-shortcuts">
                 <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
                     <button class="btn btn-success">
                         <i class="icon-signal"></i>						</button>
@@ -104,18 +104,19 @@
 
                     <span class="btn btn-warning"></span> <span class="btn btn-danger"></span>					</div>
             </div>
-            <!-- #sidebar-shortcuts -->
+            &lt;!&ndash; #sidebar-shortcuts &ndash;&gt;-->
 
             <ul class="nav nav-list">
+                <#if user.username == 'admin'>
                 <li class="active"><a
-                            href="bootm.html" target="mainframe">
+                            href="/control/all" target="mainframe">
                         <i class="icon-dashboard"></i> <span class="menu-text">
-								控制台 </span>
+								用户控制 </span>
                     </a></li>
-
+                </#if>
                 <li class="active open"><a href="javascript:void(0)" target="mainframe"
                        class="dropdown-toggle"> <i class="icon-desktop"></i> <span
-                                class="menu-text"> 系统管理 </span> <b class="arrow icon-angle-down"></b>
+                                class="menu-text"> 管理中心 </span> <b class="arrow icon-angle-down"></b>
                     </a>
 
                     <ul class="submenu" style="display: block">
@@ -124,6 +125,9 @@
 								class="icon-double-angle-right"></i> 商品管理
                             <!--内嵌网页，iframe标签-->
 						</a></li>
+                        <li><a href="/info/all?uid=${user.id}" target="mainframe"> <i
+                                class="icon-double-angle-right"></i> 查看求购
+                        </a></li>
                         <#if user.username == 'admin'>
                         <li><a href="/category/list" target="mainframe"> <i
 								class="icon-double-angle-right"></i> 类别管理
@@ -131,13 +135,19 @@
                         <li><a href="/product/all" target="mainframe"> <i
                                 class="icon-double-angle-right"></i> 查看所有商品
                         </a></li>
-                        <li><a href="/comment/all" target="mainframe"> <i
+                        <li><a href="/comment/all?uid=${user.id}" target="mainframe"> <i
                                 class="icon-double-angle-right"></i> 查看所有评论
                         </a></li>
                         <li><a href="/collect/all" target="mainframe"> <i
                                 class="icon-double-angle-right"></i> 查看用户收藏
                         </a></li>
-                        </#if>>
+                        <li><a href="/order/all" target="mainframe"> <i
+                                class="icon-double-angle-right"></i> 查看所有发货订单
+                        </a></li>
+                        <li><a href="/discount/all" target="mainframe"> <i
+                                class="icon-double-angle-right"></i> 查看折扣信息
+                        </a></li>
+                        </#if>
                     </ul>
                 </li>
             </ul>

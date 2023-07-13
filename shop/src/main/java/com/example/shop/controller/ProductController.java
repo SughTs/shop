@@ -71,6 +71,7 @@ public class ProductController extends BaseController{
         //ProductBean product = new
         //System.out.println("Here came I, list.");
         //System.out.println(productMapper.selectList(null));
+        req.setAttribute("uid",uid);
         req.setAttribute("retList",productMapper.selectList(uid));//传入Mapper
         return "/product/list";
     }
